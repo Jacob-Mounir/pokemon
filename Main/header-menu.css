@@ -4,7 +4,7 @@ header {
 	top: 0;
 	width: 100%;
 	box-shadow: 0 4px 20px hsla(207, 24%, 35%, 0.1);
-	background-color: #000000;
+	background-color: #ffffff;
 	z-index: 1;
 }
 
@@ -29,7 +29,7 @@ nav {
 	font-size: 17px;
 	font-weight: 500;
 	transition: 0.2s all ease-in-out;
-	color: #ffffff;
+	color: #ff0000;
 	text-decoration: none;
 }
 
@@ -62,7 +62,7 @@ nav {
 
 	.menu {
 		flex-direction: column;
-		background: linear-gradient(to right, #09f1b8, #00a2ff, #ff00d2, #fed90f);
+		background: #000000;
 		align-items: start;
 		position: absolute;
 		top: 70px;
@@ -85,7 +85,7 @@ nav {
 
 	.menu-icon {
 		display: block;
-		color: #ffffff;
+		color: #000000;
 		font-size: 28px;
 		cursor: pointer;
 	}

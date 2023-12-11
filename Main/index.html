@@ -5,26 +5,27 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Document</title>
 	<link rel="stylesheet" href="style.css">
-	<script type="module" src="dragNdrop.js"></script>
+	<link rel="stylesheet" href="header-menu.css">
 </head>
+
 <body>
 
+	<header>
+		<nav>
+			<div class="logo">
+				<a href="index.html"><img src="#" alt=""></a>
+			</div>
+			<input type="checkbox" id="menu-toggle" />
+			<label for="menu-toggle" class="menu-icon">&#9776;</label>
+			<ul class="menu">
+				<li><a href="#team">TEAM</a>
+				</li>
+			</ul>
+		</nav>
+	</header>
 
-	<!----- DRAG N DROP CONTAINER-->
-    <div class="container">
-        <div class="card">
-            <ul id="list">
-                <li id="item1" draggable="true">Item 1</li>
-                <li id="item1" draggable="true">Item 1</li>
-            </ul>
-        </div>
-        <div id="target" class="drop-target">
-            <p>YOUR TEAM</p>
+	<main></main>
 
-			 <div></div>
 
-        </div>
-
-    </div>
 </body>
 </html>

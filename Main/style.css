@@ -16,23 +16,78 @@ body{
 main{
 	width: 100%;
 }
-
+/* ----- POKèCARDS CONTAINER ----- */
 #pokeList{
 	padding-inline-start: 0;
 	display: grid;
+	justify-content: center;
+	align-items: center;
 	grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
 	grid-gap: 1em;
 }
 
-.card{
-	padding: 1em;
-	border: 1px solid white;
-	list-style: none;
+.poke-container{
+	padding: 3em;
+	margin: 0 auto;
 }
 
+/* ----- POKèCARDS ----- */
+.card{
+	padding: 1em;
+	background-color: white;
+	list-style: none;
+	text-align: center;
+}
+
+
+
+.card-image{
+	height: 180px;
+}
 .card-title{
 	text-transform: uppercase;
 	font-size: 32px;
 	font-weight: normal;
+}
 
+.card-subtitle{
+	font-weight: lighter;
+	color: grey;
+	margin-top: 4px;
+}
+
+/* ----- BUTTON ----- */
+
+.card-btn {
+	margin-top: 1em;
+	background: orangered;
+	border: 1px solid #FF4742;
+	border-radius: 6px;
+	box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+	box-sizing: border-box;
+	color: #FFFFFF;
+	cursor: pointer;
+	display: inline-block;
+	font-family: nunito,roboto,proxima-nova,"proxima nova",sans-serif;
+	font-size: 16px;
+	font-weight: 800;
+	line-height: 16px;
+	min-height: 40px;
+	outline: 0;
+	padding: 12px 14px;
+	text-align: center;
+	text-rendering: geometricprecision;
+	text-transform: none;
+	user-select: none;
+	-webkit-user-select: none;
+	touch-action: manipulation;
+}
+.card-btn:hover,
+.card-btn:active {
+	background-color: initial;
+	background-position: 0 0;
+	color: orangered;
+}
+.card-btn:active {
+  	opacity: .5;
 }

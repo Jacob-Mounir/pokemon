@@ -1,22 +1,6 @@
 const pokeList = document.getElementById("pokeList")
 
 
-// const fetchPokemons = async () => {
-// 	// Hämta data
-// 	const url = `https://pokeapi.co/api/v2/pokemon/?limit=150`
-// 	const respons = fetch(url)
-
-// 	//omvandla data till json
-// 	const data = res.json()
-
-// 	const pokemon = data.results.map((result, index) => ({
-// 		name: data.name,
-// 		id: index +1,
-// 		image: `"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index + 1}"`
-// 	}));
-
-
-
 	const promises = [] //Tom array
 	for (let i = 1; i <= 200; i++) {
 	const url = `https://pokeapi.co/api/v2/pokemon/${i}`;

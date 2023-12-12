@@ -3,17 +3,21 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Document</title>
+	<title>Pokémon</title>
 	<link rel="stylesheet" href="style.css">
 	<link rel="stylesheet" href="nightMode.css">
+	<link rel="stylesheet" href="searchBar.css">
 	<script type="module" src="script.js" defer></script>
 	<script type="module" src="nightMode.js" defer></script>
+
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
 </head>
 
 <body>
 
-
-	<div>
+<!----- NIGHT MODE BUTTON-->
+<div>
   <input type="checkbox" class="checkbox" id="checkbox">
   <label for="checkbox" class="checkbox-label">
     <i class="fas fa-moon"></i>
@@ -23,6 +27,13 @@
 </div>
 
 	<main>
+
+<div class="container">
+        <h1>POKÈ-MANAGER</h1>
+     <form action="">
+		<input type="search" required>
+		<i class="fa fa-search" aria-hidden="true"></i>
+	</form>
 
 		<div class="poke-container">
 			<ol id="pokeList"></ol>

@@ -1,6 +1,7 @@
+const pokeList = document.getElementById("pokeList")
 
-const fetchPokemon = () => {
 
+const fetchPokemons = () => {
 
 	const promises = [] //Tom array
 	for (let i = 1; i <= 200; i++) {
@@ -10,22 +11,27 @@ const fetchPokemon = () => {
 
 	//KÖRS PARALLELT IST FÖR EN EFTER EN
 	Promise.all(promises).then(results => {
-		const pokemon = results.map( data => ({
+		const pokemons = results.map( data => ({
 			name: data.name,
 			id: data.id,
 			image: data.sprites['front_default'],
 			type: data.types.map((type) => type.type.name).join(', ')
 		}))
-		displayPokemon(pokemon);
+		displayPokemon(pokemons);
 	})
 }
 
-const displayPokemon = (pokemon) => {
-	console.log(pokemon)
-
-
-
+const displayPokemon = (pokemons) => {
+	console.log(pokemons)
+	const pokemonsHTMLstring = pokemons.map (pokemon => `
+	<li>
+		<img src="${pokemon.image}"/>
+		<h2>${pokemon.id}. ${pokemon.name}</h2>
+		<p>Type: ${pokemon.type}</p>
+	</li>
+	` )
+	pokeList.innerHTML = pokemonsHTMLstring
 }
 
 
-	fetchPokemon()
+	fetchPokemons()

@@ -8,6 +8,8 @@
 	<link rel="stylesheet" href="nightMode.css">
 	<link rel="stylesheet" href="searchBar.css">
 	<link rel="stylesheet" href="teamPage.css">
+	<link rel="stylesheet" href="rollBtn.css">
+
 	<script type="module" src="script.js" defer></script>
 	<script type="module" src="nightMode.js" defer></script>
 	<script type="module" src="buttons.js" defer></script>
@@ -16,44 +18,55 @@
 
 </head>
 
+<header>
+
+<div class="topnav">
+		<h1>POKÈ-MANAGER</h1>
+<!----- TOGGLE PAGE BUTTON ---->
+
+<!----- SEARCH BAR ---->
+<div>
+	<form action="">
+		<input type="search" name="searchBar"
+		id="searchBar" placeholder="Search Pokémon" required>
+		<i class="fa fa-search" aria-hidden="true"></i>
+	</form>
+</div>
+</div>
+
+</header>
+
+
 <body>
 
-<!----- NIGHT MODE BUTTON-->
+	<!----- NIGHT MODE BUTTON-->
 
-<main>
+	<main>
 		<!----- SEARCH PAGE ---->
 		<section id="searchPage">
-				<h1>POKÈ-MANAGER</h1>
-
-			<button id="team-btn">My Team</button>
-
-			<form action="">
-				<input type="search" name="searchBar"
-				id="searchBar" placeholder="Search Pokémon" required>
-				<i class="fa fa-search" aria-hidden="true"></i>
-			</form>
 
 			<div class="poke-container">
 				<ol id="pokeList"></ol>
 			</div>
 		</section>
 
-<!----- TEAM PAGE ---->
 
-<section id="teamPage">
-	<div class="manager">
+		<!----- TEAM PAGE ---->
 
-		<h1>YOUR TEAM</h1>
-		<h4>Not ready to fight!</h4>
-		<hr>
-		<p>(Please choose you champions by clicking or draging)</p>
+		<section id="teamPage">
+			<div class="manager">
 
-		<button id="search-btn">Search Pokémons</button>
-		<div class="slot-container">
+				<h1>YOUR TEAM</h1>
+				<h4>Not ready to fight!</h4>
+				<hr>
+				<p>(Please choose you champions by clicking or draging)</p>
 
-			<div class="slot"></div>
-			<div class="slot"></div>
-			<div class="slot"></div>
+				<button id="search-btn">Search Pokémons</button>
+				<div class="slot-container">
+
+					<div class="slot"></div>
+					<div class="slot"></div>
+					<div class="slot"></div>
 
 		</div>
 
@@ -68,6 +81,8 @@
 
 </main>
 
-<button></button>
+<div class="corner">
+      <button class="btn second">Button 2</button>
+    </div>
 </body>
 </html>

@@ -1,23 +1,67 @@
 @font-face {
-    font-family: PokemonTitle;
-    src: url(PokemonFont.ttf);
+	font-family: PokemonTitle;
+	src: url(PokemonFont.ttf);
 }
 
-*{
+* {
 	box-sizing: border-box;
 	margin: 0;
 }
 
-body{
+body {
 	background-color: orangered;
 	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
-main{
+
+/* ----- HEADER / NAV MENU ----- */
+header{
+	background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+	box-shadow: 0 -14px 10px 15px rgba(0,0,0,0.5);
+	}
+
+.topnav {
+	display: inline;
+	overflow: sticky;
+}
+
+.topnav h1 {
+	text-align: center;
+	/* margin-bottom: 1em;  LÄGG TILL VID MOBIL ANPASSNING*/
+}
+
+.topnav btn {
+	float: right;
+	color: #ffffff;
+	text-align: center;
+	padding: 1em 3em;
+	text-decoration: none;
+	font-size: 17px;
+}
+
+.topnav btn:hover {
+	background-color: #ddd;
+	color: black;
+}
+
+.topnav btn.active {
+	background-color: #04AA6D;
+	color: white;
+}
+
+
+
+main {
 	width: 100%;
 }
+
 /* ----- POKèCARDS CONTAINER ----- */
-#pokeList{
+#pokeList {
 	padding-inline-start: 0;
 	display: grid;
 	justify-content: center;
@@ -26,13 +70,13 @@ main{
 	grid-gap: 1em;
 }
 
-.poke-container{
+.poke-container {
 	padding: 3em;
 	margin: 0 auto;
 }
 
 /* ----- POKèCARDS ----- */
-.card{
+.card {
 	padding: 1em;
 	background-color: white;
 	list-style: none;
@@ -42,16 +86,17 @@ main{
 
 
 
-.card-image{
+.card-image {
 	height: 180px;
 }
-.card-title{
+
+.card-title {
 	text-transform: uppercase;
 	font-size: 32px;
 	font-weight: normal;
 }
 
-.card-subtitle{
+.card-subtitle {
 	font-weight: lighter;
 	color: grey;
 	margin-top: 4px;
@@ -69,7 +114,7 @@ main{
 	color: #FFFFFF;
 	cursor: pointer;
 	display: inline-block;
-	font-family: nunito,roboto,proxima-nova,"proxima nova",sans-serif;
+	font-family: nunito, roboto, proxima-nova, "proxima nova", sans-serif;
 	font-size: 16px;
 	font-weight: 800;
 	line-height: 16px;
@@ -83,12 +128,27 @@ main{
 	-webkit-user-select: none;
 	touch-action: manipulation;
 }
+
 .card-btn:hover,
 .card-btn:active {
 	background-color: initial;
 	background-position: 0 0;
 	color: orangered;
 }
+
 .card-btn:active {
 	opacity: .5;
 }
+
+
+
+.corner{
+	width: 100px; height: 100px;
+	position: sticky;
+	bottom: 5%;
+	right: 20%;
+	transform: translate(-50%,-50%);
+}
+
+
+

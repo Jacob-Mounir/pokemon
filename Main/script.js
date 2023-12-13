@@ -2,7 +2,7 @@ const pokeList = document.getElementById("pokeList")
 
 
 	const promises = [] //Tom array
-	for (let i = 1; i <= 20; i++) {
+	for (let i = 1; i <= 200; i++) {
 	const url = `https://pokeapi.co/api/v2/pokemon/${i}`;
 	promises.push(fetch(url).then((res) => res.json()))
 	}

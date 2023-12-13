@@ -8,7 +8,6 @@
 	<link rel="stylesheet" href="nightMode.css">
 	<link rel="stylesheet" href="searchBar.css">
 	<link rel="stylesheet" href="teamPage.css">
-	<link rel="stylesheet" href="rollBtn.css">
 
 	<script type="module" src="script.js" defer></script>
 	<script type="module" src="nightMode.js" defer></script>
@@ -21,17 +20,26 @@
 <header>
 
 <div class="topnav">
-		<h1>POKÈ-MANAGER</h1>
-<!----- TOGGLE PAGE BUTTON ---->
 
-<!----- SEARCH BAR ---->
-<div>
-	<form action="">
-		<input type="search" name="searchBar"
-		id="searchBar" placeholder="Search Pokémon" required>
-		<i class="fa fa-search" aria-hidden="true"></i>
-	</form>
-</div>
+
+		<!-- <h1>POKÈ-MANAGER</h1> -->
+	<div class="menu">
+		<div class="teams-icon">
+        <span id="count">3</span>
+	</div>
+	
+		<div class="logo">
+				<img src="Logo.png">
+		</div>
+		<!----- SEARCH BAR ---->
+		<div class="search-container">
+			<form action="">
+				<input type="search" name="searchBar"
+				id="searchBar" placeholder="Search Pokémon" required>
+				<i class="fa fa-search" aria-hidden="true"></i>
+			</form>
+		</div>
+	</div>
 </div>
 
 </header>
@@ -81,8 +89,10 @@
 
 </main>
 
-<div class="corner">
-      <button class="btn second">Button 2</button>
-    </div>
+<div class="teams-icon">
+        <div id="cart-count">3</div>
+</div>
+
 </body>
 </html>
+

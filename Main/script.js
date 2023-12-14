@@ -3,7 +3,6 @@ let Pokemon = new Object() // GLOBAL POKEMON LIST
 
 const addBtn = document.getElementById("addBtn")
 
-addBtn.addEventListener
 
 
 

@@ -56,12 +56,20 @@ const searchPokemon = (searchString, pokemons = Pokemon) => {
 	displayPokemon(filteredPokemon)
 }
 
+<<<<<<< HEAD
 export {searchPokemon}
+=======
+export { searchPokemon }
+>>>>>>> origin
 
 
 // ----- MANAGE POKEMONS ----
 
+<<<<<<< HEAD
 const a = (pokemon) => {
+=======
+const addedPokemons = (pokemon) => {
+>>>>>>> origin
 	console.log(pokemons)
 	const pokemonsHTMLstring = pokemons.map(pokemon => `
 	<li class="card">

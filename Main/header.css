@@ -1,0 +1,102 @@
+@font-face {
+	font-family: PokemonTitle;
+	src: url(PokemonFont.ttf);
+}
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+}
+
+body {
+	width: 100%;
+	background-color: orangered;
+	font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+/* ----- HEADER / NAV MENU ----- */
+header {
+	background-color: #333;
+	color: #fff;
+	padding: 10px 0;
+	position: sticky;
+	top: 0;
+	z-index: 100;
+	box-shadow: 0 -14px 10px 15px rgba(0, 0, 0, 0.5);
+}
+
+.topnav {
+	display: inline;
+	overflow: sticky;
+}
+
+.menu {
+	width: 100%;
+	display: inline-flex;
+	justify-content: space-between;
+	padding-left: 2em;
+	padding-right: 2em;
+	align-items: center;
+}
+
+.menu p {
+	position: relative;
+	top: 0;
+}
+
+.logo img {
+	width: 90px;
+	height: 90px;
+	align-items: center;
+}
+
+.switch-btn {
+	background: #ff4742;
+	border: 1px solid #ff4742;
+	border-radius: 6px;
+	box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+	box-sizing: border-box;
+	color: #ffffff;
+	cursor: pointer;
+	display: inline-block;
+	font-family: nunito, roboto, proxima-nova, "proxima nova", sans-serif;
+	font-size: 16px;
+	font-weight: 800;
+	line-height: 16px;
+	min-height: 40px;
+	outline: 0;
+	padding: 12px 14px;
+	text-align: center;
+	text-rendering: geometricprecision;
+	text-transform: none;
+	user-select: none;
+	-webkit-user-select: none;
+	touch-action: manipulation;
+	vertical-align: middle;
+	transition: 300ms;
+}
+
+.switch-btn:hover,
+.switch-btn:active {
+	background-color: initial;
+	background-position: 0 0;
+	color: #ff4742;
+	background-color: #fff;
+	transform: scale(1.2);
+}
+
+.switch-btn:active {
+	opacity: 0.5;
+}
+
+.switch-btn>img {
+	width: 20px;
+	height: 20px;
+	margin-left: 10px;
+	margin-bottom: -4px;
+	/* mask: url(./pokeball.png);
+  	fill:rgb(255, 255, 255); */
+	align-self: center;
+}
+
+/* ------ END OF HEADER ----- */

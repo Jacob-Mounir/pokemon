@@ -1,98 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>Pokémon</title>
-	<link rel="stylesheet" href="style.css">
-	<link rel="stylesheet" href="nightMode.css">
-	<link rel="stylesheet" href="searchBar.css">
-	<link rel="stylesheet" href="teamPage.css">
+	<link rel="stylesheet" href="header.css" />
+	<link rel="stylesheet" href="mainPages.css" />
 
 	<script type="module" src="script.js" defer></script>
 	<script type="module" src="nightMode.js" defer></script>
 	<script type="module" src="buttons.js" defer></script>
 
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+		integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous" />
 </head>
-
-<header>
-
-<div class="topnav">
-
-
-		<!-- <h1>POKÈ-MANAGER</h1> -->
-	<div class="menu">
-		<div class="teams-icon">
-        <span id="count">3</span>
-	</div>
-	
-		<div class="logo">
-				<img src="Logo.png">
-		</div>
-		<!----- SEARCH BAR ---->
-		<div class="search-container">
-			<form action="">
-				<input type="search" name="searchBar"
-				id="searchBar" placeholder="Search Pokémon" required>
-				<i class="fa fa-search" aria-hidden="true"></i>
-			</form>
-		</div>
-	</div>
-</div>
-
-</header>
-
 
 <body>
 
-	<!----- NIGHT MODE BUTTON-->
+<!------ HEADER ------->
+<header>
+	<div class="topnav">
+		<div class="menu">
+			<div class="logo">
+				<img src="Logo.png" />
+			</div>
 
-	<main>
-		<!----- SEARCH PAGE ---->
+			<div class="teams-icon">
+				<span id="count">3</span>
+			</div>
+
+			<div id="switch-btn">
+				<button class="switch-btn" role="button">
+					Manage Team<img src="pokeball.png" />
+				</button>
+			</div>
+
+		</div>
+	</div>
+</header>
+
+
+<main>
+
+	<!----- SEARCH PAGE ---->
+
 		<section id="searchPage">
-
+			<div class="search-container">
+				<form action="">
+					<input type="search" name="searchBar" id="searchBar" placeholder="Search Pokémon" required />
+					<i class="fa fa-search" aria-hidden="true"></i>
+				</form>
+			</div>
 			<div class="poke-container">
 				<ol id="pokeList"></ol>
 			</div>
 		</section>
 
-
 		<!----- TEAM PAGE ---->
 
-		<section id="teamPage">
+		<section id="teamPage" class="hide">
 			<div class="manager">
-
 				<h1>YOUR TEAM</h1>
 				<h4>Not ready to fight!</h4>
-				<hr>
 				<p>(Please choose you champions by clicking or draging)</p>
 
-				<button id="search-btn">Search Pokémons</button>
 				<div class="slot-container">
-
 					<div class="slot"></div>
 					<div class="slot"></div>
 					<div class="slot"></div>
+				</div>
+			</div>
 
-		</div>
+			<div class="reserv">
+				<h1>Reserves</h1>
 
-	</div>
-
-	<div class="reserv">
-		<h1>Reserves</h1>
-	</div>
-
-</section>
-
-
-</main>
-
-<div class="teams-icon">
-        <div id="cart-count">3</div>
-</div>
-
+				<div class="poke-container">
+					<ol id="pokeList"></ol>
+				</div>
+			</div>
+		</section>
+	</main>
 </body>
-</html>
 
+</html>

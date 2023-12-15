@@ -5,23 +5,24 @@ const promises = [] //Tom array
 
 // ADD TO MANGER
 const teamPokeList = document.getElementById("teamPokeList");
-const addBtn = document.getElementById("addBtn")
+// const addBtn = document.getElementById("addBtn")
 const reserveList = [] //
 const reserveListElement = document.getElementById("reserveList");
 const slotContainer = document.querySelector(".slot-container");
 const teamSlots = document.querySelectorAll(".slot");
+
 
 // TEAM
 const maxTeamSize = 3;
 const team = [];
 
 
-//Loop som hämtar data pokémons från API
+
+//MAIN FETCH LOOP
 for (let i = 1; i <= 900; i++) {
 	const url = `https://pokeapi.co/api/v2/pokemon/${i}`;
 	promises.push(fetch(url).then((res) => res.json()));
 }
-
 
 // Hämtar pokemons från API
 Promise.all(promises)
@@ -36,18 +37,22 @@ Promise.all(promises)
 	Pokemon = pokemons
 	displayPokemon(pokemons);
 
+
+	// ADD POKEMON + EFFECT
 	const addButtons = document.querySelectorAll(".card-btn");
 	addButtons.forEach((button, index) => {
 		button.addEventListener("click", () => {
 		addToReserve(Pokemon[index]);
+
 		});
 	});
 })
 
 // ----- DISPLAY POKEMONS ON SEARCH PAGE ------
 const displayPokemon = (pokemons) => {
-	console.log(pokemons)
-	const pokemonsHTMLstring = pokemons.map(pokemon => `
+		console.log(pokemons)
+
+const pokemonsHTMLstring = pokemons.map(pokemon => `
 	<li class="card">
 		<img class="card-image" src="${pokemon.image}"/>
 		<h2 class="card-title">${pokemon.id}. ${pokemon.name}</h2>
@@ -59,14 +64,16 @@ const displayPokemon = (pokemons) => {
 	pokeList.innerHTML = pokemonsHTMLstring
 
 }
-// -------SEARCH ----
+// -------SEARCH ---- //
 const searchPokemon = (searchString, pokemons = Pokemon) => {
 
-	const filteredPokemon = pokemons.filter((pokemon) => {
+// -------FILTER ----
 
-		return (pokemon.name.includes(searchString) || pokemon.type.includes(searchString))
+const filteredPokemon = pokemons.filter((pokemon) => {
 
-	})
+	return (pokemon.name.includes(searchString) || pokemon.type.includes(searchString))
+
+})
 	displayPokemon(filteredPokemon)
 }
 
@@ -99,18 +106,16 @@ function displayTeamPokemon(teamPokemons) {
 
 
 
-
-
-const addToTeam = (pokemon) => {
-	if (team.length < maxTeamSize){
-	team.push(pokemon)
-	updateTeamDisplay(team)
-} else {rr
-addToReserve(pokemon)
-}}
-
-
 // --- COUNTER --- //
+
+//REMOVE FROM TEAM LIST 
+function removeFromTeam(pokemonToRemove) {
+	const index = reserveList.findIndex(pokemon => pokemon.id === pokemonToRemove.id);
+	if (index !== -1) {
+		reserveList.splice(index, 1);
+		updateReserveList(reserveList);
+	}
+}
 
 
 function updateTeamDisplay(team) {

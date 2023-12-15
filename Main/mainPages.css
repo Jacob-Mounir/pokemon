@@ -179,13 +179,13 @@ form:valid a {
 /* ---- POKè BALL ---- */
 
 .teams-icon {
-	/* display: inline-flex;
+	display: inline-flex;
     position: fixed;
     bottom: 4%;
-    left: 3%; */
+    left: 3%;
 	background-image: url(./pokemon-icon.png);
-	width: 60px;
-	height: 60px;
+	width: 70px;
+	height: 70px;
 	background-size: contain;
 	background-repeat: no-repeat;
 	transition: transform 0.3s;
@@ -196,14 +196,21 @@ form:valid a {
 	opacity: 0.8;
 }
 
+/* ADD POKEMON EFFECT */
+.teams-icon.added-to-cart {
+	transform: scale(1.5);
+	opacity: 0.8;
+	transition: transform 0.3s;
+}
+/* THE SMALL COUNTER  */
 #count {
-	background-color: #ff5733;
+	background-color: #00e1ff;
 	color: white;
 	border-radius: 50%;
 	padding: 5px 10px;
 	position: absolute;
-	/* top: -10px;
-    right: -7px; */
+	top: -5px;
+    left: 45px;
 	font-size: 12px;
 }
 
@@ -215,7 +222,7 @@ form:valid a {
 	height: 50vh;
 
 }
-
+/* CONTAINER */
 .manager {
 	display: flex;
 	flex-direction: column;
@@ -225,6 +232,7 @@ form:valid a {
 	background-color: rgb(54, 54, 54);
 }
 
+/* TILTE */
 .manager>h1,
 h4,
 p {
@@ -236,6 +244,7 @@ p {
 	color: red;
 }
 
+/* FIGHT CARD OF POKEMONS  */
 .slot-container {
 	padding-top: 2em;
 	width: 100%;

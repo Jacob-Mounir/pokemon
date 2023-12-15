@@ -89,6 +89,9 @@ function displayTeamPokemon(teamPokemons) {
 			removeFromReserve(pokemonToRemove);
 		});
 	});
+
+
+	
 }
 
 

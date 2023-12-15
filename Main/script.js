@@ -8,6 +8,12 @@ const teamPokeList = document.getElementById("teamPokeList");
 const addBtn = document.getElementById("addBtn")
 const reserveList = [] //
 const reserveListElement = document.getElementById("reserveList");
+const slotContainer = document.querySelector(".slot-container");
+const teamSlots = document.querySelectorAll(".slot");
+
+// TEAM
+const maxTeamSize = 3;
+const team = [];
 
 
 //Loop som hämtar data pokémons från API
@@ -66,7 +72,7 @@ const searchPokemon = (searchString, pokemons = Pokemon) => {
 
 
 
-// ----- MANAGE POKEMONS ----q
+// ----- MANAGE POKEMONS (REMOVE / ADD) ----q
 
 function displayTeamPokemon(teamPokemons) {
 
@@ -86,22 +92,53 @@ function displayTeamPokemon(teamPokemons) {
 	kickButtons.forEach((button, index) => {
 		button.addEventListener("click", () => {
 			const pokemonToRemove = teamPokemons[index];
-			removeFromReserve(pokemonToRemove);
+			removeFromTeam(pokemonToRemove);
 		});
 	});
-
-
-	
 }
 
+
+
+
+
+const addToTeam = (pokemon) => {
+	if (team.length < maxTeamSize){
+	team.push(pokemon)
+	updateTeamDisplay(team)
+} else {rr
+addToReserve(pokemon)
+}}
+
+
+// --- COUNTER --- //
+
+
+function updateTeamDisplay(team) {
+	teamSlots.forEach((slot, index) => {
+		if (index < maxTeamSize) {
+			if (index < team.length) {
+				const pokemon = team[index];
+				slot.innerHTML = `
+        <div class="team-pokemon">
+            <img class="team-image" src="${pokemon.image}" />
+            <h2 class="team-title">${pokemon.name}</h2>
+        </div>
+        `;
+			} else {
+				slot.innerHTML = `
+        <div class="empty-slot">
+            <p>Empty Slot</p>
+    	</div>
+        `;
+			}
+		}
+	});
+	updateReserveList(reserveList);
+}
 
 const updateReserveList = (reserveList) => {
 	displayTeamPokemon(reserveList)
 }
-
-
-
-// --- COUNTER --- //
 
 
 function countPokemonsInReserve() {
@@ -128,7 +165,6 @@ function removeFromReserve(pokemon) {
 	}
 }
 
-updateCountInHTML
 
 
 // ---- EXPORT ---- //

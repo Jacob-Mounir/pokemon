@@ -2,13 +2,6 @@
 <html lang="en">
 
 <head>
-<<<<<<< HEAD
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Document</title>
-	<link rel="stylesheet" href="circleCount.css">
-	<script type="module" src="counterButton.js"></script>
-=======
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
@@ -22,44 +15,36 @@
 
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
 		integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous" />
->>>>>>> origin
 </head>
+
 <body>
 
-<<<<<<< HEAD
+	<!------ HEADER ------->
+	<header>
+		<div class="topnav">
+			<div class="menu">
+				<div class="logo">
+					<img src="Logo.png" />
+				</div>
 
-<div class="teams-icon">
-  <span id="cart-count">0</span>
-</div>gut
+				<div class="teams-icon">
+					<span id="count">`${pokemon.teamCount}`</span>
+				</div>
 
+				<div id="switch-btn">
+					<button class="switch-btn" role="button">
+						Manage Team
+					</button>
+				</div>
 
-=======
-<!------ HEADER ------->
-<header>
-	<div class="topnav">
-		<div class="menu">
-			<div class="logo">
-				<img src="Logo.png" />
 			</div>
-
-			<div class="teams-icon">
-				<span id="count">3</span>
-			</div>
-
-			<div id="switch-btn">
-				<button class="switch-btn" role="button">
-					Manage Team<img src="pokeball.png" />
-				</button>
-			</div>
-
 		</div>
-	</div>
-</header>
+	</header>
 
 
-<main>
+	<main>
 
-	<!----- SEARCH PAGE ---->
+		<!----- SEARCH PAGE ---->
 
 		<section id="searchPage">
 			<div class="search-container">
@@ -88,16 +73,15 @@
 				</div>
 			</div>
 
-			<div class="reserv">
-				<h1>Reserves</h1>
+	<div class="reserv">
+    <h1>Reserves</h1>
+    <div class="poke-container">
+		<!-- Plats för reservlistan -->
+		<ol id="teamPokeList"></ol>
+    </div>
 
-				<div class="poke-container">
-					<ol id="pokeList"></ol>
-				</div>
-			</div>
 		</section>
 	</main>
->>>>>>> origin
 </body>
 
 </html>

@@ -1,17 +1,18 @@
+//WELCOME TO THE POKEMON WORLD
 
 const pokeList = document.getElementById("pokeList")
 let Pokemon = new Object() // GLOBAL POKEMON LIST
 const promises = [] //Tom array
 
-// ADD TO MANGER
+// ADD TO > MANAGER
 const teamPokeList = document.getElementById("teamPokeList");
-// const addBtn = document.getElementById("addBtn")
 
 const reserveListElement = document.getElementById("reserveList");
 const slotContainer = document.querySelector(".slot-container");
+
+
+
 const teamSlots = document.querySelectorAll(".slot");
-
-
 // TEAM
 const team = []; // TEAM
 const maxTeamSize = 3;
@@ -20,7 +21,7 @@ const reserveList = [] //RESERVE LIST
 
 
 //MAIN FETCH LOOP
-for (let i = 1; i <= 900; i++) {
+for (let i = 1; i <= 1017; i++) {
 	const url = `https://pokeapi.co/api/v2/pokemon/${i}`;
 	promises.push(fetch(url).then((res) => res.json()));
 }
@@ -76,7 +77,6 @@ const searchPokemon = (searchString, pokemons = Pokemon) => {
 }
 
 
-
 // ----- MANAGE POKEMONS (REMOVE / ADD) -----
 
 function displayTeamPokemon(teamPokemons) {
@@ -91,9 +91,10 @@ function displayTeamPokemon(teamPokemons) {
 	<form class="card-form">
 	<input type="text" class="card-input" placeholder="Nickname">
 	</form>
-	<div>
 	<button id="changeName" class="change-btn">Change name</button>
+	<div>
 	<button id="kickBtn" class="kick-btn">Kick from List</button>
+	<button id="addBtn" class="card-btn">Add to Team</button>
 	</div>
 	</li>
     `).join("");
@@ -110,8 +111,6 @@ function displayTeamPokemon(teamPokemons) {
 	});
 }
 
-
-//When I click on the KickFromTeam Button - remove the pokemon from the TEAM array and move it to the first place in the reserveList array
 
 
 function removeFromTeam(pokemonToRemove) {
@@ -135,11 +134,23 @@ function removeFromReserve(pokemonToRemove) {
 }
 
 
+// const status = getElementById('fightStatus')
+// function teamStatus() {
+// 	if (maxTeamSize == 3) {
+// 		status.innerTEXT = 'Ready to Fight'
+
+// 	}
+
+// }
+
+
+
 function updateTeamDisplay(team) {
     teamSlots.forEach((slot, index) => {
         if (index < maxTeamSize) {
             if (index < team.length) {
                 const pokemon = team[index];
+
                 slot.innerHTML = `
     <li class="card">
     <img class="card-image" src="${pokemon.image}"/>
@@ -149,9 +160,9 @@ function updateTeamDisplay(team) {
     <form class="card-form">
     <input type="text" class="card-input" placeholder="Nickname">
     </form>
-    <div>
-    <button class="change-btn">Change name</button>
+	<div>
     <button class="kickFromTeam-btn">Kick from Team</button>
+    <button class="change-btn">Change name</button>
     </div>
     </li>
     `;
@@ -213,16 +224,16 @@ function updateCountInHTML() {
 }
 
 
-// ---- EXPORT ---- //
-export { searchPokemon }
-
-
 function transferPokemon(team1, team2, pokemonIndex) {
 	console.log(pokemonIndex);
 	if (pokemonIndex >= 0 && pokemonIndex < team1.length) {
 		const [pokemonToTransfer] = team1.splice(pokemonIndex, 1);
-		team2.push(pokemonToTransfer);
+		team2.unshift(pokemonToTransfer);
 	} else {
 		console.error("Invalid index:", pokemonIndex);
 	}
 }
+// ---- EXPORT ---- //
+export { searchPokemon }
+
+

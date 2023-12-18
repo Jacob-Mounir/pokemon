@@ -202,12 +202,12 @@ input > .card-input::after {
 
 .teams-icon {
 	display: inline-flex;
-    position: fixed;
-    bottom: 4%;
-    left: 3%;
+    position: relative;
+    /* bottom: 4%;
+    left: 2%; */
 	background-image: url(./images/pokemon-icon.png);
 	width: 70px;
-	height: 70px;
+	height: 90px;
 	background-size: contain;
 	background-repeat: no-repeat;
 	transition: transform 0.3s;

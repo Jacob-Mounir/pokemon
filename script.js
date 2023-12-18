@@ -39,9 +39,6 @@ Promise.all(promises)
 		displayPokemon(pokemons);
 
 
-
-
-
 		// ADD POKEMON + EFFECT
 		const addButtons = document.querySelectorAll(".card-btn");
 		addButtons.forEach((button, index) => {
@@ -108,37 +105,28 @@ function displayTeamPokemon(teamPokemons) {
 	kickButtons.forEach((button, index) => {
 		button.addEventListener("click", () => {
 			const pokemonToRemove = teamPokemons[index];
-			removeFromTeam(pokemonToRemove);
+			removeFromReserve(pokemonToRemove);
 		});
 	});
 }
 
 
-// KICK FROM RESERVE LIST BUTTON
-const kickFromTeamButton = document.querySelectorAll("#kickFromTeam-btn");
-kickFromTeamButton.forEach((button, index) => {
-	button.addEventListener("click", () => {
-		console.log("Kicking");
-		const pokemonToRemove = team[index];
-		removeFromTeam(pokemonToRemove);
-		moveToreserveListFirst(pokemonToRemove)
-	});
-});
-
-
-function moveToreserveListFirst(pokemon) {
-	// Move Pokémon to the first place in TeamList array
-	teamList.unshift(pokemon);
-}
-
 //When I click on the KickFromTeam Button - remove the pokemon from the TEAM array and move it to the first place in the reserveList array
 
 
-
-// --- COUNTER --- //
-
-//REMOVE FROM TEAM LIST
 function removeFromTeam(pokemonToRemove) {
+	console.log(pokemonToRemove)
+	const index = team.findIndex(pokemon => pokemon.id === pokemonToRemove.id);
+	if (index !== -1) {
+		team.splice(index, 1);
+		moveToReserveList(pokemonToRemove);
+	}
+	updateTeamDisplay(team);
+}
+
+
+
+function removeFromReserve(pokemonToRemove) {
 	const index = reserveList.findIndex(pokemon => pokemon.id === pokemonToRemove.id);
 	if (index !== -1) {
 		reserveList.splice(index, 1);
@@ -148,37 +136,52 @@ function removeFromTeam(pokemonToRemove) {
 
 
 function updateTeamDisplay(team) {
-	teamSlots.forEach((slot, index) => {
-		if (index < maxTeamSize) {
-			if (index < team.length) {
-				const pokemon = team[index];
-				slot.innerHTML = `
-	<li class="card">
-	<img class="card-image" src="${pokemon.image}"/>
-	<h2 class="card-title">${pokemon.id}. ${pokemon.name}</h2>
-	<p class="card-subtitle">Type: ${pokemon.type}</p>
-	<p class="card-subtitle">Abilities: ${pokemon.abilities}</p>
-	<form class="card-form">
-	<input type="text" class="card-input" placeholder="Nickname">
-	</form>
-	<div>
-	<button id="changeName" class="change-btn">Change name</button>
-	<button id="kickFromTeam-btn" class="kickFromTeam-btn">Kick from Team</button>
-	</div>
-	</li>
+    teamSlots.forEach((slot, index) => {
+        if (index < maxTeamSize) {
+            if (index < team.length) {
+                const pokemon = team[index];
+                slot.innerHTML = `
+    <li class="card">
+    <img class="card-image" src="${pokemon.image}"/>
+    <h2 class="card-title">${pokemon.id}. ${pokemon.name}</h2>
+    <p class="card-subtitle">Type: ${pokemon.type}</p>
+    <p class="card-subtitle">Abilities: ${pokemon.abilities}</p>
+    <form class="card-form">
+    <input type="text" class="card-input" placeholder="Nickname">
+    </form>
+    <div>
+    <button class="change-btn">Change name</button>
+    <button class="kickFromTeam-btn">Kick from Team</button>
+    </div>
+    </li>
     `;
-			} else {
-				slot.innerHTML = `
+
+                // Assign the event listener directly to the button in this slot
+                const kickButton = slot.querySelector(".kickFromTeam-btn");
+                kickButton.addEventListener("click", () => {
+                    console.log("Kicking", index);
+                    transferPokemon(team, reserveList, index);
+                    // Update the displays to reflect changes
+                    updateTeamDisplay(team);
+                    updateReserveList(reserveList);
+                });
+            } else {
+                slot.innerHTML = `
         <div class="empty-slot">
             <p>Empty Slot</p>
     	</div>
         `;
-			}
-		}
-	});
-	updateReserveList(reserveList);
+            }
+        }
+    });
+
 }
 
+
+function moveToReserveList(pokemon) {
+	reserveList.unshift(pokemon);
+	updateReserveList(reserveList);
+}
 
 // UPDATE THE RESERVE LIST
 const updateReserveList = (reserveList) => {
@@ -212,3 +215,14 @@ function updateCountInHTML() {
 
 // ---- EXPORT ---- //
 export { searchPokemon }
+
+
+function transferPokemon(team1, team2, pokemonIndex) {
+	console.log(pokemonIndex);
+	if (pokemonIndex >= 0 && pokemonIndex < team1.length) {
+		const [pokemonToTransfer] = team1.splice(pokemonIndex, 1);
+		team2.push(pokemonToTransfer);
+	} else {
+		console.error("Invalid index:", pokemonIndex);
+	}
+}

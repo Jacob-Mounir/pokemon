@@ -10,7 +10,11 @@ main {
 
 /* ----- SEARCH BAR ----- */
 
+<<<<<<< HEAD
 form {
+=======
+.search-form {
+>>>>>>> playground
 	transform: translate(-10%, -50%);
 	transition: all 0.7s;
 	width: 50px;
@@ -29,7 +33,11 @@ form {
 	justify-content: center;
 }
 
+<<<<<<< HEAD
 input {
+=======
+.search-form > input {
+>>>>>>> playground
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -59,12 +67,18 @@ input {
 	transition: all 1s;
 }
 
+<<<<<<< HEAD
 form:hover,
 form:valid {
+=======
+.search-form:hover,
+.search-form:valid {
+>>>>>>> playground
 	width: 220px;
 	cursor: pointer;
 }
 
+<<<<<<< HEAD
 form:hover input,
 form:valid input {
 	display: block;
@@ -72,6 +86,15 @@ form:valid input {
 
 form:hover .fa,
 form:valid .fa {
+=======
+.search-form:hover input,
+.search-form:valid input {
+	display: block;
+}
+
+.search-form:hover .fa,
+.search-form:valid .fa {
+>>>>>>> playground
 	background: #07051a;
 	color: white;
 }
@@ -89,7 +112,11 @@ a {
 	width: 100%;
 }
 
+<<<<<<< HEAD
 form:valid a {
+=======
+.search-form:valid a {
+>>>>>>> playground
 	display: block;
 }
 
@@ -179,6 +206,7 @@ form:valid a {
 /* ---- POKè BALL ---- */
 
 .teams-icon {
+<<<<<<< HEAD
 	/* display: inline-flex;
     position: fixed;
     bottom: 4%;
@@ -186,6 +214,15 @@ form:valid a {
 	background-image: url(./pokemon-icon.png);
 	width: 60px;
 	height: 60px;
+=======
+	display: inline-flex;
+    position: fixed;
+    bottom: 4%;
+    left: 3%;
+	background-image: url(./pokemon-icon.png);
+	width: 70px;
+	height: 70px;
+>>>>>>> playground
 	background-size: contain;
 	background-repeat: no-repeat;
 	transition: transform 0.3s;
@@ -196,12 +233,25 @@ form:valid a {
 	opacity: 0.8;
 }
 
+<<<<<<< HEAD
 #count {
 	background-color: #ff5733;
+=======
+/* ADD POKEMON EFFECT */
+.teams-icon.added-to-cart {
+	transform: scale(1.5);
+	opacity: 0.8;
+	transition: transform 0.3s;
+}
+/* THE SMALL COUNTER  */
+#count {
+	background-color: #00e1ff;
+>>>>>>> playground
 	color: white;
 	border-radius: 50%;
 	padding: 5px 10px;
 	position: absolute;
+<<<<<<< HEAD
 	/* top: -10px;
     right: -7px; */
 	font-size: 12px;
@@ -209,13 +259,24 @@ form:valid a {
 
 
 
+=======
+	top: -5px;
+    left: 45px;
+	font-size: 12px;
+}
+
+>>>>>>> playground
 /* ----  TEAM MANAGER PAGE ----- */
 
 #teamPage {
 	height: 50vh;
 
 }
+<<<<<<< HEAD
 
+=======
+/* CONTAINER */
+>>>>>>> playground
 .manager {
 	display: flex;
 	flex-direction: column;
@@ -225,6 +286,10 @@ form:valid a {
 	background-color: rgb(54, 54, 54);
 }
 
+<<<<<<< HEAD
+=======
+/* TILTE */
+>>>>>>> playground
 .manager>h1,
 h4,
 p {
@@ -236,6 +301,10 @@ p {
 	color: red;
 }
 
+<<<<<<< HEAD
+=======
+/* FIGHT CARD OF POKEMONS  */
+>>>>>>> playground
 .slot-container {
 	padding-top: 2em;
 	width: 100%;
@@ -256,4 +325,150 @@ p {
 
 .hide {
 	display: none;
+<<<<<<< HEAD
+=======
+}
+
+/* --- RESERV LIST --- */
+
+
+#teamPokeList {
+padding-inline-start: 0;
+	display: grid;
+	justify-content: center;
+	align-items: center;
+	grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+	grid-gap: 1em;
+	margin-left: 2em;
+	margin-right: 2em;
+	padding-top: 2em;
+}
+
+
+/* KICK BUTTON */
+
+.kick-btn {
+	margin-top: 1em;
+	background: rgb(159, 159, 159);
+	border: 1px solid #f5f5f5;
+	border-radius: 6px;
+	box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+	box-sizing: border-box;
+	color: #ffffff;
+	cursor: pointer;
+	display: inline-block;
+	font-family: nunito, roboto, proxima-nova, "proxima nova", sans-serif;
+	font-size: 16px;
+	font-weight: 800;
+	line-height: 16px;
+	min-height: 40px;
+	outline: 0;
+	padding: 12px 14px;
+	text-align: center;
+	text-rendering: geometricprecision;
+	text-transform: none;
+	user-select: none;
+	-webkit-user-select: none;
+	touch-action: manipulation;
+}
+
+.kick-btn:hover,
+.kick-btn:active {
+	background-color: orangered;
+	background-position: 0 0;
+	color: rgb(255, 255, 255);
+}
+
+.kick-btn:active {
+	opacity: 0.5;
+}
+
+.team-pokemon{
+	padding: 1em;
+	background-color: white;
+	list-style: none;
+	text-align: center;
+	border-radius: 10px;
+}
+
+.card {
+	padding: 1em;
+	background-color: white;
+	list-style: none;
+	text-align: center;
+	border-radius: 10px;
+}
+
+.card-image {
+	height: 180px;
+}
+
+.card-title {
+	text-transform: uppercase;
+	font-size: 32px;
+	font-weight: normal;
+}
+
+.card-subtitle {
+	font-weight: lighter;
+	color: grey;
+	margin-top: 4px;
+}
+
+
+.card-form{
+	margin-top: 10px;
+	width:100%;
+
+}
+
+input.card-input {
+	padding: 0.5em;
+	text-align: center;
+	border: #f5f5f5;
+	background-color: rgb(240, 240, 240);
+	border-radius: 10px;
+
+}
+
+input > .card-input::after {
+	border: 1px solid orangered;
+
+
+}
+
+
+
+
+
+.change-btn{
+	margin-top: 1em;
+	background: orangered;
+	border: 1px solid #f5f5f5;
+	border-radius: 3px;
+	box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+	box-sizing: border-box;
+	color: #ffffff;
+	cursor: pointer;
+	display: inline-block;
+	font-family: nunito, roboto, proxima-nova, "proxima nova", sans-serif;
+	font-size: 16px;
+	font-weight: 800;
+	line-height: 16px;
+	min-height: 40px;
+	outline: 0;
+	padding: 12px 14px;
+	text-align: center;
+	text-rendering: geometricprecision;
+	text-transform: none;
+	user-select: none;
+	-webkit-user-select: none;
+	touch-action: manipulation;
+}
+
+
+.change-btn:hover {
+	background:white;
+	color: orangered;
+>>>>>>> playground
 }

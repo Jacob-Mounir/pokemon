@@ -7,13 +7,13 @@ const switchBtn = document.getElementById("switch-btn");
 const searchBar = document.getElementById("searchBar")
 
 switchBtn.addEventListener('click', () => {
-	if (teamPage.classList.contains('hide')) {
+	if (teamPage.classList.contains('hide') ) {
 
 		teamPage.classList.remove('hide');
 		searchPage.classList.add('hide');
 
 		switchBtn.classList.add('switch-btn')
-		switchBtn.innerText = 'Manage Team';
+		switchBtn.innerText = 'Find Pokémon';
 
 	} else {
 
@@ -21,7 +21,7 @@ switchBtn.addEventListener('click', () => {
 		searchPage.classList.remove('hide');
 
 		switchBtn.classList.add('switch-btn')
-		switchBtn.innerText = 'Find Pokémon';
+		switchBtn.innerText = 'Manage Team';
 	}
 });
 

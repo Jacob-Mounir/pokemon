@@ -10,11 +10,7 @@ main {
 
 /* ----- SEARCH BAR ----- */
 
-<<<<<<< HEAD
-form {
-=======
 .search-form {
->>>>>>> playground
 	transform: translate(-10%, -50%);
 	transition: all 0.7s;
 	width: 50px;
@@ -33,11 +29,7 @@ form {
 	justify-content: center;
 }
 
-<<<<<<< HEAD
-input {
-=======
 .search-form > input {
->>>>>>> playground
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -67,26 +59,12 @@ input {
 	transition: all 1s;
 }
 
-<<<<<<< HEAD
-form:hover,
-form:valid {
-=======
 .search-form:hover,
 .search-form:valid {
->>>>>>> playground
 	width: 220px;
 	cursor: pointer;
 }
 
-<<<<<<< HEAD
-form:hover input,
-form:valid input {
-	display: block;
-}
-
-form:hover .fa,
-form:valid .fa {
-=======
 .search-form:hover input,
 .search-form:valid input {
 	display: block;
@@ -94,7 +72,6 @@ form:valid .fa {
 
 .search-form:hover .fa,
 .search-form:valid .fa {
->>>>>>> playground
 	background: #07051a;
 	color: white;
 }
@@ -112,11 +89,7 @@ a {
 	width: 100%;
 }
 
-<<<<<<< HEAD
-form:valid a {
-=======
 .search-form:valid a {
->>>>>>> playground
 	display: block;
 }
 
@@ -206,15 +179,6 @@ form:valid a {
 /* ---- POKè BALL ---- */
 
 .teams-icon {
-<<<<<<< HEAD
-	/* display: inline-flex;
-    position: fixed;
-    bottom: 4%;
-    left: 3%; */
-	background-image: url(./pokemon-icon.png);
-	width: 60px;
-	height: 60px;
-=======
 	display: inline-flex;
     position: fixed;
     bottom: 4%;
@@ -222,7 +186,6 @@ form:valid a {
 	background-image: url(./pokemon-icon.png);
 	width: 70px;
 	height: 70px;
->>>>>>> playground
 	background-size: contain;
 	background-repeat: no-repeat;
 	transition: transform 0.3s;
@@ -233,10 +196,6 @@ form:valid a {
 	opacity: 0.8;
 }
 
-<<<<<<< HEAD
-#count {
-	background-color: #ff5733;
-=======
 /* ADD POKEMON EFFECT */
 .teams-icon.added-to-cart {
 	transform: scale(1.5);
@@ -246,37 +205,22 @@ form:valid a {
 /* THE SMALL COUNTER  */
 #count {
 	background-color: #00e1ff;
->>>>>>> playground
 	color: white;
 	border-radius: 50%;
 	padding: 5px 10px;
 	position: absolute;
-<<<<<<< HEAD
-	/* top: -10px;
-    right: -7px; */
-	font-size: 12px;
-}
-
-
-
-=======
 	top: -5px;
     left: 45px;
 	font-size: 12px;
 }
 
->>>>>>> playground
 /* ----  TEAM MANAGER PAGE ----- */
 
 #teamPage {
 	height: 50vh;
 
 }
-<<<<<<< HEAD
-
-=======
 /* CONTAINER */
->>>>>>> playground
 .manager {
 	display: flex;
 	flex-direction: column;
@@ -286,10 +230,7 @@ form:valid a {
 	background-color: rgb(54, 54, 54);
 }
 
-<<<<<<< HEAD
-=======
 /* TILTE */
->>>>>>> playground
 .manager>h1,
 h4,
 p {
@@ -301,10 +242,7 @@ p {
 	color: red;
 }
 
-<<<<<<< HEAD
-=======
 /* FIGHT CARD OF POKEMONS  */
->>>>>>> playground
 .slot-container {
 	padding-top: 2em;
 	width: 100%;
@@ -325,8 +263,6 @@ p {
 
 .hide {
 	display: none;
-<<<<<<< HEAD
-=======
 }
 
 /* --- RESERV LIST --- */
@@ -470,5 +406,4 @@ input > .card-input::after {
 .change-btn:hover {
 	background:white;
 	color: orangered;
->>>>>>> playground
 }

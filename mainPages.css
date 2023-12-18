@@ -206,21 +206,21 @@ input > .card-input::after {
     /* bottom: 4%;
     left: 2%; */
 	background-image: url(./images/pokemon-icon.png);
-	width: 70px;
-	height: 90px;
+	width: 80px;
+	height: 80px;
 	background-size: contain;
 	background-repeat: no-repeat;
 	transition: transform 0.3s;
 }
 
 .teams-icon:hover {
-	transform: scale(1.5);
+	transform: scale(1.2);
 	opacity: 0.8;
 }
 
 /* ADD POKEMON EFFECT */
 .teams-icon.added-to-cart {
-	transform: scale(1.5);
+	transform: scale(1.2);
 	opacity: 0.8;
 	transition: transform 0.3s;
 }

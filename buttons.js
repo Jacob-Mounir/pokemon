@@ -26,6 +26,8 @@ switchBtn.addEventListener('click', () => {
 });
 
 
+
+
 searchBar.addEventListener('keyup', (e) => {
 
 	const searchString = e.target.value.toLowerCase();

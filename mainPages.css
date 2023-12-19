@@ -424,3 +424,13 @@ padding-inline-start: 0;
 	background:white;
 	color: orangered;
 }
+
+/* --- STATUS ---- */
+
+.green{
+	color: greenyellow;
+}
+
+.red{
+	color: red;
+}

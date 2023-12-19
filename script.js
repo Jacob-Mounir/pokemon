@@ -45,6 +45,7 @@ Promise.all(promises)
 		addButtons.forEach((button, index) => {
 			button.addEventListener("click", () => {
 				addToTeam(Pokemon[index]);
+				teamStatus(team);
 
 			});
 		});
@@ -94,7 +95,7 @@ function displayTeamPokemon(teamPokemons) {
 	<button id="changeName" class="change-btn">Change name</button>
 	<div>
 	<button id="kickBtn" class="kick-btn">Kick from List</button>
-	<button id="addBtn" class="card-btn">Add to Team</button>
+	<button id="addToTeamBtn" class="card-btn">Add to Team</button>
 	</div>
 	</li>
     `).join("");
@@ -107,8 +108,22 @@ function displayTeamPokemon(teamPokemons) {
 		button.addEventListener("click", () => {
 			const pokemonToRemove = teamPokemons[index];
 			removeFromReserve(pokemonToRemove);
+			teamStatus(team);
 		});
 	});
+
+	const addToTeamFromReserve = document.querySelectorAll('#addToTeamBtn')
+	addToTeamFromReserve.forEach((button, index) =>{
+
+		button.addEventListener('click', () => {
+			const PokemonToAdd = reserveList[index];
+			transferPokemon(reserveList, team, index);
+			updateReserveList(reserveList);
+			updateTeamDisplay(team);
+			teamStatus(team)
+
+	});
+})
 }
 
 
@@ -133,25 +148,27 @@ function removeFromReserve(pokemonToRemove) {
 	}
 }
 
+//FIGHT STATUS
+const status = document.getElementById('fightStatus');
 
-// const status = getElementById('fightStatus')
-// function teamStatus() {
-// 	if (maxTeamSize == 3) {
-// 		status.innerTEXT = 'Ready to Fight'
-
-// 	}
-
-// }
+function teamStatus(team) {
+	if (team.length >= 3) {
+		status.innerHTML = `<h4 class="green">READY TO FIGHT</h4>`;
+	} else {
+		status.innerHTML = `<h4 class="red">NOT READY TO FIGHT</h4>`;
+	}
+}
+teamStatus(team);
 
 
 
 function updateTeamDisplay(team) {
-    teamSlots.forEach((slot, index) => {
-        if (index < maxTeamSize) {
-            if (index < team.length) {
-                const pokemon = team[index];
+	teamSlots.forEach((slot, index) => {
+		if (index < maxTeamSize) {
+			if (index < team.length) {
+				const pokemon = team[index];
 
-                slot.innerHTML = `
+				slot.innerHTML = `
     <li class="card">
     <img class="card-image" src="${pokemon.image}"/>
     <h2 class="card-title">${pokemon.id}. ${pokemon.name}</h2>
@@ -167,24 +184,25 @@ function updateTeamDisplay(team) {
     </li>
     `;
 
-                // Assign the event listener directly to the button in this slot
-                const kickButton = slot.querySelector(".kickFromTeam-btn");
-                kickButton.addEventListener("click", () => {
-                    console.log("Kicking", index);
-                    transferPokemon(team, reserveList, index);
-                    // Update the displays to reflect changes
-                    updateTeamDisplay(team);
-                    updateReserveList(reserveList);
-                });
-            } else {
-                slot.innerHTML = `
+				// Assign the event listener directly to the button in this slot
+				const kickButton = slot.querySelector(".kickFromTeam-btn");
+				kickButton.addEventListener("click", () => {
+					console.log("Kicking", index);
+					transferPokemon(team, reserveList, index);
+					// Update the displays to reflect changes
+					updateTeamDisplay(team);
+					updateReserveList(reserveList);
+					teamStatus(team);
+				});
+			} else {
+				slot.innerHTML = `
         <div class="empty-slot">
             <p>Empty Slot</p>
     	</div>
         `;
-            }
-        }
-    });
+			}
+		}
+	});
 
 }
 
@@ -204,9 +222,11 @@ const addToTeam = (pokemon) => {
 	if (team.length < maxTeamSize) {
 		team.push(pokemon);
 		updateTeamDisplay(team);
+
 	} else {
 		reserveList.push(pokemon);
 		updateReserveList(reserveList);
+
 	}
 	updateCountInHTML();
 };
@@ -228,12 +248,33 @@ function transferPokemon(team1, team2, pokemonIndex) {
 	console.log(pokemonIndex);
 	if (pokemonIndex >= 0 && pokemonIndex < team1.length) {
 		const [pokemonToTransfer] = team1.splice(pokemonIndex, 1);
-		team2.unshift(pokemonToTransfer);
+		team2.push(pokemonToTransfer);
 	} else {
 		console.error("Invalid index:", pokemonIndex);
 	}
 }
+
+// const addToTeamFromReserve = document.querySelectorAll('#addToTeamBtn')
+// addToTeamFromReserve.forEach((button, index) =>{
+
+// 	button.addEventListener('click', () => {
+// 		const PokemonToAdd = reserveList[index];
+// 		transferPokemon(reserveList, team, index);
+
+// })
+
+
+// })
+
 // ---- EXPORT ---- //
 export { searchPokemon }
 
 
+// const kickButtons = document.querySelectorAll(".kick-btn");
+// kickButtons.forEach((button, index) => {
+// 	button.addEventListener("click", () => {
+// 		const pokemonToRemove = teamPokemons[index];
+// 		removeFromReserve(pokemonToRemove);
+// 		teamStatus(team);
+// 	});
+// });

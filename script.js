@@ -45,7 +45,7 @@ Promise.all(promises)
 		displayPokemon(pokemons);
 
 
-		// ADD POKEMON + EFFECT
+		// ADD POKEMON
 		const addButtons = document.querySelectorAll(".card-btn");
 		addButtons.forEach((button, index) => {
 			button.addEventListener("click", () => {
@@ -115,6 +115,7 @@ function displayTeamPokemon(teamPokemons) {
 			const pokemonToRemove = teamPokemons[index];
 			removeFromReserve(pokemonToRemove);
 			teamStatus(team);
+			updateCountInHTML()
 		});
 	});
 
@@ -130,16 +131,7 @@ function displayTeamPokemon(teamPokemons) {
 
 	});
 	})
-	//CHANGE NICKNAME
-	// const inputName = document.getElementById('nameInput')
-	// const nameBtn = document.querySelectorAll('.change-btn')
-	// nameBtn.forEach((button, index) => {
-	// button.addEventListener('click', () => {
 
-	// 	nickname.innerText = ${inputName.value}
-
-	// })
-	//
 
 
 	teamPokemons.forEach((pokemon) => {
@@ -233,6 +225,7 @@ function updateTeamDisplay(team) {
                     updateReserveList(reserveList);
                     teamStatus(team);
 
+
                 });
 
                 // Add event listener for changing the name
@@ -314,7 +307,6 @@ function transferPokemon(team1, team2, uniqueId) {
         console.error("Invalid uniqueId:", uniqueId);
     }
 }
-
 
 
 

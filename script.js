@@ -18,7 +18,10 @@ const team = []; // TEAM
 const maxTeamSize = 3;
 const reserveList = [] //RESERVE LIST
 
-
+let uuidCounter = 0;
+function generateUUID() {
+  return `uuid-${uuidCounter++}`; // This will generate a unique string like "uuid-0", "uuid-1", etc.
+}
 
 //MAIN FETCH LOOP
 for (let i = 1; i <= 1017; i++) {
@@ -33,8 +36,10 @@ Promise.all(promises)
 			name: data.name,
 			id: data.id,
 			image: data.sprites['front_default'],
+			nickname: "",
 			type: data.types.map((type) => type.type.name).join(", "),
 			abilities: data.abilities.map((ability) => ability.ability.name).join(", ")
+
 		}))
 		Pokemon = pokemons
 		displayPokemon(pokemons);
@@ -85,17 +90,18 @@ function displayTeamPokemon(teamPokemons) {
 	const teamPokemonsHTMLstring = teamPokemons
 		.map((pokemon) => `
 	<li class="card">
+	<h3 class="nickname" id="nicknameHolder-${pokemon.uniqueId}">${pokemon.nickname}</h3>
 	<img class="card-image" src="${pokemon.image}"/>
-	<h2 class="card-title">${pokemon.id}. ${pokemon.name}</h2>
+	<h2 class="card-title" id="name-${pokemon.uniqueId}">${pokemon.id}. ${pokemon.name}</h2>
 	<p class="card-subtitle">Type: ${pokemon.type}</p>
 	<p class="card-subtitle">Abilities: ${pokemon.abilities}</p>
 	<form class="card-form">
-	<input type="text" class="card-input" placeholder="Nickname">
+		<input type="text" class="card-input" placeholder="Nickname" id="nickname-${pokemon.uniqueId}">
 	</form>
-	<button id="changeName" class="change-btn">Change name</button>
+	<button id="changeName-${pokemon.uniqueId}" class="change-btn">Change name</button>
 	<div>
-	<button id="kickBtn" class="kick-btn">Kick from List</button>
-	<button id="addToTeamBtn" class="card-btn">Add to Team</button>
+		<button id="kickBtn-${pokemon.id}" class="kick-btn">Kick from List</button>
+		<button id="addToTeamBtn" class="card-btn">Add to Team</button>
 	</div>
 	</li>
     `).join("");
@@ -123,9 +129,26 @@ function displayTeamPokemon(teamPokemons) {
 			teamStatus(team)
 
 	});
-})
-}
+	})
+	//CHANGE NICKNAME
+	// const inputName = document.getElementById('nameInput')
+	// const nameBtn = document.querySelectorAll('.change-btn')
+	// nameBtn.forEach((button, index) => {
+	// button.addEventListener('click', () => {
 
+	// 	nickname.innerText = ${inputName.value}
+
+	// })
+	//
+
+
+	teamPokemons.forEach((pokemon) => {
+		const changeNameBtn = document.getElementById(`changeName-${pokemon.uniqueId}`);
+		changeNameBtn.addEventListener('click', () => {
+		  changePokemonNameAtIndex(teamPokemons, pokemon.uniqueId, 'reserve');
+		});
+	  });
+}
 
 
 function removeFromTeam(pokemonToRemove) {
@@ -138,6 +161,21 @@ function removeFromTeam(pokemonToRemove) {
 	updateTeamDisplay(team);
 }
 
+function changePokemonNameAtIndex(array, uniqueId, arrayName) {
+	// Find the pokemon by the unique identifier
+	const pokemonIndex = array.findIndex(p => p.uniqueId == uniqueId);
+	const nicknameInput = document.getElementById(`nickname-${uniqueId}`);
+	const newName = nicknameInput.value.trim();
+	if (newName && pokemonIndex !== -1) {
+	  array[pokemonIndex].nickname = newName; // Change the name in the array
+	  document.getElementById(`nicknameHolder-${uniqueId}`).textContent = `${newName}`; // Update the DOM with the new nickname
+	  if (arrayName === "reserve") {
+		updateReserveList(array);
+	  } else {
+		updateTeamDisplay(array);
+	  }
+	}
+  }
 
 
 function removeFromReserve(pokemonToRemove) {
@@ -163,47 +201,54 @@ teamStatus(team);
 
 
 function updateTeamDisplay(team) {
-	teamSlots.forEach((slot, index) => {
-		if (index < maxTeamSize) {
-			if (index < team.length) {
-				const pokemon = team[index];
+    teamSlots.forEach((slot, index) => {
+        if (index < maxTeamSize) {
+            if (index < team.length) {
+                const pokemon = team[index];
 
-				slot.innerHTML = `
+                // Use the uniqueId that you have generated when adding the Pokémon to the team
+                slot.innerHTML = `
     <li class="card">
-    <img class="card-image" src="${pokemon.image}"/>
-    <h2 class="card-title">${pokemon.id}. ${pokemon.name}</h2>
-    <p class="card-subtitle">Type: ${pokemon.type}</p>
-    <p class="card-subtitle">Abilities: ${pokemon.abilities}</p>
-    <form class="card-form">
-    <input type="text" class="card-input" placeholder="Nickname">
-    </form>
-	<div>
-    <button class="kickFromTeam-btn">Kick from Team</button>
-    <button class="change-btn">Change name</button>
-    </div>
+		<h3 class=nickname id="nicknameHolder-${pokemon.uniqueId}">${pokemon.nickname}</h3>
+        <img class="card-image" src="${pokemon.image}"/>
+        <h2 class="card-title" id="name-${pokemon.uniqueId}">${pokemon.id}. ${pokemon.name}</h2>
+        <p class="card-subtitle">Type: ${pokemon.type}</p>
+        <p class="card-subtitle">Abilities: ${pokemon.abilities}</p>
+        <form class="card-form">
+            <input type="text" id="nickname-${pokemon.uniqueId}" class="card-input" placeholder="Nickname">
+        </form>
+        <div>
+            <button id="kickFromTeam-${pokemon.uniqueId}" class="kickFromTeam-btn">Kick from Team</button>
+            <button id="changeName-${pokemon.uniqueId}" class="change-btn">Change name</button>
+        </div>
     </li>
-    `;
+                `;
 
-				// Assign the event listener directly to the button in this slot
-				const kickButton = slot.querySelector(".kickFromTeam-btn");
-				kickButton.addEventListener("click", () => {
-					console.log("Kicking", index);
-					transferPokemon(team, reserveList, index);
-					// Update the displays to reflect changes
-					updateTeamDisplay(team);
-					updateReserveList(reserveList);
-					teamStatus(team);
-				});
-			} else {
-				slot.innerHTML = `
+                // Assign the event listener directly to the button in this slot
+                const kickButton = slot.querySelector(`#kickFromTeam-${pokemon.uniqueId}`);
+                kickButton.addEventListener("click", () => {
+                    transferPokemon(team, reserveList, pokemon.uniqueId);
+                    // Update the displays to reflect changes
+                    updateTeamDisplay(team);
+                    updateReserveList(reserveList);
+                    teamStatus(team);
+
+                });
+
+                // Add event listener for changing the name
+                const changeNameButton = slot.querySelector(`#changeName-${pokemon.uniqueId}`);
+                changeNameButton.addEventListener("click", () => {
+                    changePokemonNameAtIndex(team, pokemon.uniqueId, "team");
+                });
+            } else {
+                slot.innerHTML = `
         <div class="empty-slot">
             <p>Empty Slot</p>
-    	</div>
-        `;
-			}
-		}
-	});
-
+        </div>
+                `;
+            }
+        }
+    });
 }
 
 
@@ -214,17 +259,29 @@ function moveToReserveList(pokemon) {
 
 // UPDATE THE RESERVE LIST
 const updateReserveList = (reserveList) => {
-	displayTeamPokemon(reserveList)
+	displayTeamPokemon(reserveList);
+	console.log(reserveList);
 }
 
 // ADD TO RESERVE
+
+function generateUniqueId(pokemon) {
+	return `${pokemon.id}-${new Date().getTime()}`;
+  }
+
+
+
+
 const addToTeam = (pokemon) => {
+
+	const pokemonWithUniqueId = {...pokemon, uniqueId: generateUniqueId(pokemon)};
+
 	if (team.length < maxTeamSize) {
-		team.push(pokemon);
+		team.push(pokemonWithUniqueId);
 		updateTeamDisplay(team);
 
 	} else {
-		reserveList.push(pokemon);
+		reserveList.push(pokemonWithUniqueId);
 		updateReserveList(reserveList);
 
 	}
@@ -244,37 +301,22 @@ function updateCountInHTML() {
 }
 
 
-function transferPokemon(team1, team2, pokemonIndex) {
-	console.log(pokemonIndex);
-	if (pokemonIndex >= 0 && pokemonIndex < team1.length) {
-		const [pokemonToTransfer] = team1.splice(pokemonIndex, 1);
-		team2.push(pokemonToTransfer);
-	} else {
-		console.error("Invalid index:", pokemonIndex);
-	}
+function transferPokemon(team1, team2, uniqueId) {
+
+    const pokemonIndex = team1.findIndex(p => p.uniqueId === uniqueId);
+    console.log(pokemonIndex);
+
+    if (pokemonIndex >= 0 && pokemonIndex < team1.length) {
+
+        const [pokemonToTransfer] = team1.splice(pokemonIndex, 1);
+        team2.unshift(pokemonToTransfer);
+    } else {
+        console.error("Invalid uniqueId:", uniqueId);
+    }
 }
 
-// const addToTeamFromReserve = document.querySelectorAll('#addToTeamBtn')
-// addToTeamFromReserve.forEach((button, index) =>{
-
-// 	button.addEventListener('click', () => {
-// 		const PokemonToAdd = reserveList[index];
-// 		transferPokemon(reserveList, team, index);
-
-// })
 
 
-// })
 
 // ---- EXPORT ---- //
 export { searchPokemon }
-
-
-// const kickButtons = document.querySelectorAll(".kick-btn");
-// kickButtons.forEach((button, index) => {
-// 	button.addEventListener("click", () => {
-// 		const pokemonToRemove = teamPokemons[index];
-// 		removeFromReserve(pokemonToRemove);
-// 		teamStatus(team);
-// 	});
-// });

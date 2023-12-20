@@ -454,6 +454,11 @@ padding-inline-start: 0;
 }
 
 .notisText{
-	text-align: ;
+	text-align: center;
+	color: orangered;
+}
+
+
+.nickname{
 	color: orangered;
 }

@@ -52,7 +52,7 @@ Promise.all(promises)
 			button.addEventListener("click", () => {
 				addToTeam(Pokemon[index]);
 				teamStatus(team);
-
+				updateCountInHTML()
 			});
 		});
 	})
@@ -342,11 +342,11 @@ const showNotis = (message) => {
 	const notis = document.querySelector('.notis');
 	const notisText = document.querySelector('.notisText')
 	notisText.textContent = message;
-	notis.style.left = '%'; // Move it into view
+	notis.style.left = '70%';
 
-	// Hide the notification after some time
+
 	setTimeout(() => {
-		notis.style.left = '100%'; // Move it back off-screen
+		notis.style.left = '100%';
 	}, 2000); // Adjust the time as needed
 };
 

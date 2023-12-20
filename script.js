@@ -350,6 +350,10 @@ const showNotis = (message) => {
 	}, 2000); // Adjust the time as needed
 };
 
+document.querySelector('.fa-search').addEventListener('click', function () {
+	const searchTerm = document.getElementById('searchBar').value;
+	searchPokemon(searchTerm);
+});
 
 // ---- EXPORT ---- //
 export { searchPokemon }

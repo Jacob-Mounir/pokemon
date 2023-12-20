@@ -10,7 +10,7 @@ const teamPokeList = document.getElementById("teamPokeList");
 const reserveListElement = document.getElementById("reserveList");
 const slotContainer = document.querySelector(".slot-container");
 
-
+let displayedPokemons = [];
 
 const teamSlots = document.querySelectorAll(".slot");
 // TEAM
@@ -43,9 +43,10 @@ Promise.all(promises)
 		}))
 		Pokemon = pokemons
 		displayPokemon(pokemons);
+		attachAddToTeamListeners()
 
 
-		// ADD POKEMON
+		// ADD POKEMON BUTTON
 		const addButtons = document.querySelectorAll(".card-btn");
 		addButtons.forEach((button, index) => {
 			button.addEventListener("click", () => {
@@ -58,6 +59,7 @@ Promise.all(promises)
 
 // ----- DISPLAY POKEMONS ON SEARCH PAGE ------
 const displayPokemon = (pokemons) => {
+	displayedPokemons = pokemons;
 	console.log(pokemons)
 
 	const pokemonsHTMLstring = pokemons.map(pokemon => `
@@ -70,6 +72,7 @@ const displayPokemon = (pokemons) => {
 		</li>`)
 		.join("")
 	pokeList.innerHTML = pokemonsHTMLstring
+	attachAddToTeamListeners()
 
 }
 // ------- SEARCH & FILTER  ------
@@ -77,13 +80,17 @@ const searchPokemon = (searchString, pokemons = Pokemon) => {
 	const filteredPokemon = pokemons.filter((pokemon) => {
 
 		return (pokemon.name.includes(searchString) || pokemon.type.includes(searchString) || pokemon.id.toString().includes(searchString))
-
+		attachAddToTeamListeners()
 	})
+
 	displayPokemon(filteredPokemon)
+
 }
 
 
-// ----- MANAGE POKEMONS (REMOVE / ADD) -----
+// ----- MANAGE TEAM SITE -----
+
+// DISPLAY POKEMONS RESERVLIST
 
 function displayTeamPokemon(teamPokemons) {
 
@@ -119,21 +126,28 @@ function displayTeamPokemon(teamPokemons) {
 		});
 	});
 
+	// ADD TO TEAM FROM RESERV LIST
 	const addToTeamFromReserve = document.querySelectorAll('#addToTeamBtn')
 	addToTeamFromReserve.forEach((button, index) =>{
 
 		button.addEventListener('click', () => {
+			if (team.length == 3) {
+				updateReserveList(reserveList);
+				return
+			}
 			const PokemonToAdd = reserveList[index];
-			transferPokemon(reserveList, team, index);
+			console.log(PokemonToAdd);
+			transferPokemon(reserveList, team, PokemonToAdd.uniqueId);
 			updateReserveList(reserveList);
 			updateTeamDisplay(team);
 			teamStatus(team)
+
 
 	});
 	})
 
 
-
+// CHANGE NAME ON FIGHT CARD
 	teamPokemons.forEach((pokemon) => {
 		const changeNameBtn = document.getElementById(`changeName-${pokemon.uniqueId}`);
 		changeNameBtn.addEventListener('click', () => {
@@ -143,24 +157,26 @@ function displayTeamPokemon(teamPokemons) {
 }
 
 
-function removeFromTeam(pokemonToRemove) {
-	console.log(pokemonToRemove)
-	const index = team.findIndex(pokemon => pokemon.id === pokemonToRemove.id);
-	if (index !== -1) {
-		team.splice(index, 1);
-		moveToReserveList(pokemonToRemove);
-	}
-	updateTeamDisplay(team);
-}
+// function removeFromTeam(pokemonToRemove) {
+// 	console.log(pokemonToRemove)
+// 	const index = team.findIndex(pokemon => pokemon.id === pokemonToRemove.id);
+// 	if (index !== -1) {
+// 		team.splice(index, 1);
+// 		moveToReserveList(pokemonToRemove);
+// 	}
+// 	updateTeamDisplay(team);
+// }
 
+// CHANGE THE NAME
 function changePokemonNameAtIndex(array, uniqueId, arrayName) {
-	// Find the pokemon by the unique identifier
+
 	const pokemonIndex = array.findIndex(p => p.uniqueId == uniqueId);
 	const nicknameInput = document.getElementById(`nickname-${uniqueId}`);
 	const newName = nicknameInput.value.trim();
 	if (newName && pokemonIndex !== -1) {
 	  array[pokemonIndex].nickname = newName; // Change the name in the array
-	  document.getElementById(`nicknameHolder-${uniqueId}`).textContent = `${newName}`; // Update the DOM with the new nickname
+	  document.getElementById(`nicknameHolder-${uniqueId}`).textContent = `${newName}`;
+
 	  if (arrayName === "reserve") {
 		updateReserveList(array);
 	  } else {
@@ -169,7 +185,7 @@ function changePokemonNameAtIndex(array, uniqueId, arrayName) {
 	}
   }
 
-
+// KICK FROM RESERV LIST
 function removeFromReserve(pokemonToRemove) {
 	const index = reserveList.findIndex(pokemon => pokemon.id === pokemonToRemove.id);
 	if (index !== -1) {
@@ -191,14 +207,13 @@ function teamStatus(team) {
 teamStatus(team);
 
 
-
+// FIGHT CARD
 function updateTeamDisplay(team) {
     teamSlots.forEach((slot, index) => {
         if (index < maxTeamSize) {
             if (index < team.length) {
                 const pokemon = team[index];
 
-                // Use the uniqueId that you have generated when adding the Pokémon to the team
                 slot.innerHTML = `
     <li class="card">
 		<h3 class=nickname id="nicknameHolder-${pokemon.uniqueId}">${pokemon.nickname}</h3>
@@ -216,7 +231,6 @@ function updateTeamDisplay(team) {
     </li>
                 `;
 
-                // Assign the event listener directly to the button in this slot
                 const kickButton = slot.querySelector(`#kickFromTeam-${pokemon.uniqueId}`);
                 kickButton.addEventListener("click", () => {
                     transferPokemon(team, reserveList, pokemon.uniqueId);
@@ -228,7 +242,7 @@ function updateTeamDisplay(team) {
 
                 });
 
-                // Add event listener for changing the name
+               // CHANGE NAME IN FIGHT CARD
                 const changeNameButton = slot.querySelector(`#changeName-${pokemon.uniqueId}`);
                 changeNameButton.addEventListener("click", () => {
                     changePokemonNameAtIndex(team, pokemon.uniqueId, "team");
@@ -244,7 +258,7 @@ function updateTeamDisplay(team) {
     });
 }
 
-
+// MOVE TO RESERVLIST FROM FIGHT CARD
 function moveToReserveList(pokemon) {
 	reserveList.unshift(pokemon);
 	updateReserveList(reserveList);
@@ -253,32 +267,34 @@ function moveToReserveList(pokemon) {
 // UPDATE THE RESERVE LIST
 const updateReserveList = (reserveList) => {
 	displayTeamPokemon(reserveList);
-	console.log(reserveList);
+
 }
 
-// ADD TO RESERVE
+// GENERATES NEW ID TO BE ABLE TO CHANGE THE NAME
 
 function generateUniqueId(pokemon) {
 	return `${pokemon.id}-${new Date().getTime()}`;
   }
 
 
-
-
+// ADD TO TEAM
 const addToTeam = (pokemon) => {
+	const pokemonWithUniqueId = { ...pokemon, uniqueId: generateUniqueId(pokemon) };
 
-	const pokemonWithUniqueId = {...pokemon, uniqueId: generateUniqueId(pokemon)};
+	let message = '';
 
 	if (team.length < maxTeamSize) {
 		team.push(pokemonWithUniqueId);
 		updateTeamDisplay(team);
-
+		message = 'Pokémon added to your team!';
 	} else {
 		reserveList.push(pokemonWithUniqueId);
 		updateReserveList(reserveList);
-
+		message = 'Team full! Pokémon added to reserve.';
 	}
+
 	updateCountInHTML();
+	showNotis(message);
 };
 
 // COUNT POKEMONS
@@ -293,7 +309,7 @@ function updateCountInHTML() {
 	countSpan.textContent = countPokemonsInReserve()
 }
 
-
+//TRANSFER POKEMON BETWEEN FIGHTCARD AND RESERVLIST
 function transferPokemon(team1, team2, uniqueId) {
 
     const pokemonIndex = team1.findIndex(p => p.uniqueId === uniqueId);
@@ -306,8 +322,33 @@ function transferPokemon(team1, team2, uniqueId) {
     } else {
         console.error("Invalid uniqueId:", uniqueId);
     }
+	updateCountInHTML()
 }
 
+//ADD FROM SEARCH PAGE
+const attachAddToTeamListeners = () => {
+	const addButtons = document.querySelectorAll(".card-btn");
+	addButtons.forEach((button, index) => {
+		button.addEventListener("click", () => {
+			addToTeam(displayedPokemons[index]);
+			teamStatus(team);
+
+		});
+	});
+};
+
+
+const showNotis = (message) => {
+	const notis = document.querySelector('.notis');
+	const notisText = document.querySelector('.notisText')
+	notisText.textContent = message;
+	notis.style.left = '%'; // Move it into view
+
+	// Hide the notification after some time
+	setTimeout(() => {
+		notis.style.left = '100%'; // Move it back off-screen
+	}, 2000); // Adjust the time as needed
+};
 
 
 // ---- EXPORT ---- //

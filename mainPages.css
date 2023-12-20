@@ -434,3 +434,26 @@ padding-inline-start: 0;
 .red{
 	color: red;
 }
+
+.notis{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	width: 400px;
+	padding: 1em;
+	height: 80px;
+	border: 1px solid bisque;
+	box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+	border-radius: 5px;
+	background-color: #ebe6d0;
+	position: fixed;
+	bottom: 5%;
+	left: 100%;
+	transition: left 0.8s ease-out;
+}
+
+.notisText{
+	text-align: ;
+	color: orangered;
+}
